@@ -1,0 +1,5 @@
+# Tested with Python 3.12.4. No LaTeX installation is required.
+numpy==2.5.3
+scipy==1.18.1
+matplotlib==3.11.2
+threadpoolctl==3.7.0

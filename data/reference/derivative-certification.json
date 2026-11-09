@@ -1,0 +1,344 @@
+{
+  "source_summary": "data/reference/summary.json",
+  "source_sha256": "976e46f09d357fe3b05ead957da7c828aff79bb6104a15b08bb713f2e517d1fc",
+  "scope": "Saved-data derivative audit only; no closed-loop trajectories regenerated.",
+  "assumptions": [
+    "Exact labels and unregularized interpolation at the saved distinct centers.",
+    "The true residual belongs to the fixed Mat\u00e9rn RKHS with norm at most 0.5.",
+    "No assumed numerical Lipschitz constant of the true residual is used.",
+    "Convex scalar learning domain [-1,1]."
+  ],
+  "kernel": {
+    "family": "Matern 5/2",
+    "variance": 1.0,
+    "length_scale": 0.5,
+    "first_derivative_representer_norm_squared": 6.666666666666667,
+    "derivative_feature_lipschitz": 20.0
+  },
+  "kernel_constant_audit": {
+    "method": "60-digit centered second/fourth differences of the kernel formula",
+    "step": "1E-8",
+    "first_derivative_representer_squared_norm_expected": "6.66666666666666666666666666666666666666666666666666666666667",
+    "second_derivative_representer_squared_norm_expected": "400.000000000000000000000000000000000000000000000000000000002",
+    "relative_difference_first": 4.999999880743043e-16,
+    "relative_difference_second": 5.5653245773328135e-08,
+    "analytic_reason": "For k(d)=(1+a|d|+a^2 d^2/3)exp(-a|d|), -k''(0)=a^2/3 and k''''(0)=a^4. Integration of the second-derivative representer bounds derivative-feature variation by a^2 times distance."
+  },
+  "rkhs_norm_budget": 0.5,
+  "nominal_closed_loop_coefficient": 0.5,
+  "existing_q_to_check": 0.7,
+  "evaluation_mesh_points": 4097,
+  "covering_radius": 0.000244140625,
+  "independent_finer_mesh_points": 8193,
+  "norm_and_offset_scope": "The norm and orthogonal residual budget belong to the unshifted exact interpolant. The simulation's constant origin correction has zero derivative, so derivative bounds are unchanged. Function-error bounds must separately include the absolute origin offset, as in the saved study.",
+  "arithmetic_scope": "Exact-arithmetic continuous-domain inequalities evaluated in float64; 60-digit Decimal checks at grid maximizers and an 8193-point mesh audit support numerical reliability. These are not formal interval enclosures.",
+  "is_formal_interval_certificate": false,
+  "models": [
+    {
+      "key": "power_015",
+      "centers": 9,
+      "original_value_certificate_kind": "power",
+      "original_requested_radius": 0.15,
+      "original_value_error_certificate": 0.04078305529904448,
+      "rkhs_norm": 0.2433661453535869,
+      "remaining_norm_budget": 0.4367755937500822,
+      "saved_norm_abs_difference": 0.0,
+      "gram_condition_2": 228.7613708618947,
+      "interpolation_residual_inf": 2.7755575615628914e-17,
+      "derivative_power_squared_min_float64": 0.15155542989212023,
+      "derivative_power_mesh_max": 1.3758491606865666,
+      "derivative_power_uniform_upper": 1.3807319731865666,
+      "origin_offset": 8.673617379884035e-18,
+      "mesh_model_correction": 0.0011883112566093111,
+      "mesh_uncertainty_correction": 0.0021326933288578235,
+      "mesh_joint_correction": 0.0033210045854671346,
+      "model_lipschitz_upper": 0.19971572613101868,
+      "derivative_error_upper": 0.6030700273982852,
+      "true_residual_lipschitz_upper": 0.6362182554438158,
+      "learned_model_contraction_upper": 0.469228394467688,
+      "true_plant_contraction_upper": 1.072298421865973,
+      "maximizer_locations": {
+        "derivative_power": -1.0,
+        "model_lipschitz": -0.18896484375,
+        "true_residual_lipschitz": -1.0,
+        "learned_contraction": -1.0,
+        "true_contraction": -1.0
+      },
+      "fine_mesh_uncorrected_maxima": {
+        "model_lipschitz_upper": 0.19852741487440936,
+        "derivative_error_upper": 0.6009373340694274,
+        "true_residual_lipschitz_upper": 0.6328972508583487,
+        "learned_model_contraction_upper": 0.4680400832110787,
+        "true_plant_contraction_upper": 1.068977417280506
+      },
+      "fine_mesh_below_corrected_allowances": true,
+      "high_precision_audit": {
+        "decimal_precision": 60,
+        "stored_decimal_float_inputs_treated_as_exact": true,
+        "norm_60digits": "0.243366145353586897567593923350366027779970500646183667598878",
+        "remaining_budget_60digits": "0.436775593750082165128309529102445875033378287200563827334502",
+        "queries": [
+          {
+            "x": -1.0,
+            "mean_derivative_60digits": "-0.0319599167889211447610367542039570441053032448278213510046152",
+            "derivative_power_60digits": "1.37584916068656934680324230855944953455819033374673111262153",
+            "mean_derivative_float64_abs_difference": 1.8041124150158794e-16,
+            "derivative_power_float64_abs_difference": 2.6645352591003757e-15
+          },
+          {
+            "x": -0.18896484375,
+            "mean_derivative_60digits": "-0.198527414874409444713366824117731007200266491087918817088427",
+            "derivative_power_60digits": "0.695232405180203125134660726678160169630527893661020250305293",
+            "mean_derivative_float64_abs_difference": 8.326672684688674e-17,
+            "derivative_power_float64_abs_difference": 2.220446049250313e-16
+          }
+        ],
+        "max_mean_derivative_float64_abs_difference": 1.8041124150158794e-16,
+        "max_derivative_power_float64_abs_difference": 2.6645352591003757e-15
+      },
+      "learned_model_recertifies_existing_q": true,
+      "learned_model_margin_to_existing_q": 0.23077160553231196,
+      "learned_model_q_below_one": true,
+      "learned_model_tube_budget_margin": 0.03883268553080231,
+      "learned_model_minimum_radius": 0.07683729663372454,
+      "true_plant_recertifies_existing_q": false,
+      "true_plant_margin_to_existing_q": -0.37229842186597306,
+      "true_plant_q_below_one": false,
+      "true_plant_tube_budget_margin": -0.051627818578940436,
+      "true_plant_minimum_radius": null
+    },
+    {
+      "key": "power_0075",
+      "centers": 17,
+      "original_value_certificate_kind": "power",
+      "original_requested_radius": 0.075,
+      "original_value_error_certificate": 0.008405032531992582,
+      "rkhs_norm": 0.24988887756555558,
+      "remaining_norm_budget": 0.4330768394511842,
+      "saved_norm_abs_difference": 0.0,
+      "gram_condition_2": 12373.183239784932,
+      "interpolation_residual_inf": 1.6653345369377348e-16,
+      "derivative_power_squared_min_float64": 0.01567198505555112,
+      "derivative_power_mesh_max": 0.6510581949073722,
+      "derivative_power_uniform_upper": 0.6559410074073722,
+      "origin_offset": -1.734723475976807e-18,
+      "mesh_model_correction": 0.0012201605349880646,
+      "mesh_uncertainty_correction": 0.0021146330051327357,
+      "mesh_joint_correction": 0.0033347935401208005,
+      "model_lipschitz_upper": 0.20117842145294745,
+      "derivative_error_upper": 0.28407285835441054,
+      "true_residual_lipschitz_upper": 0.3651212821069681,
+      "learned_model_contraction_upper": 0.42139189731741855,
+      "true_plant_contraction_upper": 0.7054647556718291,
+      "maximizer_locations": {
+        "derivative_power": -1.0,
+        "model_lipschitz": 0.0,
+        "true_residual_lipschitz": -1.0,
+        "learned_contraction": -1.0,
+        "true_contraction": -1.0
+      },
+      "fine_mesh_uncorrected_maxima": {
+        "model_lipschitz_upper": 0.1999582609179594,
+        "derivative_error_upper": 0.2819582253492778,
+        "true_residual_lipschitz_upper": 0.3617864885668473,
+        "learned_model_contraction_upper": 0.42017173678243047,
+        "true_plant_contraction_upper": 0.7021299621317083
+      },
+      "fine_mesh_below_corrected_allowances": true,
+      "high_precision_audit": {
+        "decimal_precision": 60,
+        "stored_decimal_float_inputs_treated_as_exact": true,
+        "norm_60digits": "0.249888877565555269527417966019109795006779194529075008781969",
+        "remaining_budget_60digits": "0.433076839451184376439607179143437692810954037405099762140360",
+        "queries": [
+          {
+            "x": -1.0,
+            "mean_derivative_60digits": "-0.0798282632175663939369361903749159634690565322541372807943170",
+            "derivative_power_60digits": "0.651058194907436597252683883702692854873214393425402519236930",
+            "mean_derivative_float64_abs_difference": 3.1363800445660672e-15,
+            "derivative_power_float64_abs_difference": 6.439293542825908e-14
+          },
+          {
+            "x": 0.0,
+            "mean_derivative_60digits": "-0.199958260917959452071174032650978466670953856445382168120521",
+            "derivative_power_60digits": "0.349900687856106033403062141874716205630317267377619460152088",
+            "mean_derivative_float64_abs_difference": 5.551115123125783e-17,
+            "derivative_power_float64_abs_difference": 3.552713678800501e-15
+          }
+        ],
+        "max_mean_derivative_float64_abs_difference": 3.1363800445660672e-15,
+        "max_derivative_power_float64_abs_difference": 6.439293542825908e-14
+      },
+      "learned_model_recertifies_existing_q": true,
+      "learned_model_margin_to_existing_q": 0.2786081026825814,
+      "learned_model_q_below_one": true,
+      "learned_model_tube_budget_margin": 0.034990575169201024,
+      "learned_model_minimum_radius": 0.014526295938519717,
+      "true_plant_recertifies_existing_q": false,
+      "true_plant_margin_to_existing_q": -0.005464755671829136,
+      "true_plant_q_below_one": true,
+      "true_plant_tube_budget_margin": 0.013685110792620237,
+      "true_plant_minimum_radius": 0.028536593476832614
+    },
+    {
+      "key": "fill_015",
+      "centers": 33,
+      "original_value_certificate_kind": "fill",
+      "original_requested_radius": 0.15,
+      "original_value_error_certificate": 0.044632105290693135,
+      "rkhs_norm": 0.2545081096539686,
+      "remaining_norm_budget": 0.43037846382034906,
+      "saved_norm_abs_difference": 0.0,
+      "gram_condition_2": 791621.013534566,
+      "interpolation_residual_inf": 8.326672684688674e-16,
+      "derivative_power_squared_min_float64": 0.001254574644461215,
+      "derivative_power_mesh_max": 0.24587534463452293,
+      "derivative_power_uniform_upper": 0.25075815713452293,
+      "origin_offset": 1.474514954580286e-17,
+      "mesh_model_correction": 0.0012427153791697686,
+      "mesh_uncertainty_correction": 0.0021014573428727984,
+      "mesh_joint_correction": 0.0033441727220425675,
+      "model_lipschitz_upper": 0.20124270520556958,
+      "derivative_error_upper": 0.10792091045797768,
+      "true_residual_lipschitz_upper": 0.25919940319507223,
+      "learned_model_contraction_upper": 0.4008459850024172,
+      "true_plant_contraction_upper": 0.5087668954603949,
+      "maximizer_locations": {
+        "derivative_power": -1.0,
+        "model_lipschitz": 0.0,
+        "true_residual_lipschitz": 0.1259765625,
+        "learned_contraction": -1.0,
+        "true_contraction": -1.0
+      },
+      "fine_mesh_uncorrected_maxima": {
+        "model_lipschitz_upper": 0.19999998982639983,
+        "derivative_error_upper": 0.10581945311510488,
+        "true_residual_lipschitz_upper": 0.25585557936732495,
+        "learned_model_contraction_upper": 0.39960326962324744,
+        "true_plant_contraction_upper": 0.5054227227383523
+      },
+      "fine_mesh_below_corrected_allowances": true,
+      "high_precision_audit": {
+        "decimal_precision": 60,
+        "stored_decimal_float_inputs_treated_as_exact": true,
+        "norm_60digits": "0.254508109653968362974800069064990736454360815123386700492226",
+        "remaining_budget_60digits": "0.430378463820349188902452848847071021944364330619337231812413",
+        "queries": [
+          {
+            "x": -1.0,
+            "mean_derivative_60digits": "-0.100396730376756614474632178895140248422875192115196188393664",
+            "derivative_power_60digits": "0.245875344634395882630212544247845828243942327149911669208762",
+            "mean_derivative_float64_abs_difference": 4.0245584642661925e-15,
+            "derivative_power_float64_abs_difference": 1.2703726959273354e-13
+          },
+          {
+            "x": 0.0,
+            "mean_derivative_60digits": "-0.199999989826399285032124134892360515987815230256051055476333",
+            "derivative_power_60digits": "0.122524367508863721093536610495904251531101117898195196067470",
+            "mean_derivative_float64_abs_difference": 5.551115123125783e-16,
+            "derivative_power_float64_abs_difference": 3.261696468470632e-13
+          },
+          {
+            "x": 0.1259765625,
+            "mean_derivative_60digits": "-0.198415053812994983496021283437932563821621729897541607410001",
+            "derivative_power_60digits": "0.133464337760786302029290390532056547267900743850939932452943",
+            "mean_derivative_float64_abs_difference": 5.440092820663267e-15,
+            "derivative_power_float64_abs_difference": 5.99936766931819e-13
+          }
+        ],
+        "max_mean_derivative_float64_abs_difference": 5.440092820663267e-15,
+        "max_derivative_power_float64_abs_difference": 5.99936766931819e-13
+      },
+      "learned_model_recertifies_existing_q": true,
+      "learned_model_margin_to_existing_q": 0.29915401499758276,
+      "learned_model_q_below_one": true,
+      "learned_model_tube_budget_margin": 0.045240996958944284,
+      "learned_model_minimum_radius": 0.07449187383126056,
+      "true_plant_recertifies_existing_q": true,
+      "true_plant_margin_to_existing_q": 0.19123310453960507,
+      "true_plant_q_below_one": true,
+      "true_plant_tube_budget_margin": 0.029052860390247633,
+      "true_plant_minimum_radius": 0.09085728318844342
+    },
+    {
+      "key": "fill_0075",
+      "centers": 66,
+      "original_value_certificate_kind": "fill",
+      "original_requested_radius": 0.075,
+      "original_value_error_certificate": 0.02204741984286785,
+      "rkhs_norm": 0.2569903143642375,
+      "remaining_norm_budget": 0.4289008956891678,
+      "saved_norm_abs_difference": 0.0,
+      "gram_condition_2": 200270322.84335673,
+      "interpolation_residual_inf": 7.16093850883226e-15,
+      "derivative_power_squared_min_float64": 7.387835748495775e-05,
+      "derivative_power_mesh_max": 0.07754772969090111,
+      "derivative_power_uniform_upper": 0.08243054219090111,
+      "origin_offset": 2.220446049250313e-16,
+      "mesh_model_correction": 0.0012548355193566288,
+      "mesh_uncertainty_correction": 0.002094242654732265,
+      "mesh_joint_correction": 0.003349078174088894,
+      "model_lipschitz_upper": 0.20125483528924754,
+      "derivative_error_upper": 0.03535453337782122,
+      "true_residual_lipschitz_upper": 0.22336777446397577,
+      "learned_model_contraction_upper": 0.39483889727924587,
+      "true_plant_contraction_upper": 0.4301934306570671,
+      "maximizer_locations": {
+        "derivative_power": -1.0,
+        "model_lipschitz": 0.0,
+        "true_residual_lipschitz": 0.09375,
+        "learned_contraction": -1.0,
+        "true_contraction": -1.0
+      },
+      "fine_mesh_uncorrected_maxima": {
+        "model_lipschitz_upper": 0.1999999997698909,
+        "derivative_error_upper": 0.033260290723088955,
+        "true_residual_lipschitz_upper": 0.2200234028089029,
+        "learned_model_contraction_upper": 0.39358406175988925,
+        "true_plant_contraction_upper": 0.4268443524829782
+      },
+      "fine_mesh_below_corrected_allowances": true,
+      "high_precision_audit": {
+        "decimal_precision": 60,
+        "stored_decimal_float_inputs_treated_as_exact": true,
+        "norm_60digits": "0.256990314364078288457591144236327351544971698354457903545852",
+        "remaining_budget_60digits": "0.428900895689263181707472793376260365308203786701336854086436",
+        "queries": [
+          {
+            "x": -1.0,
+            "mean_derivative_60digits": "-0.106415938239907606941604649097189429483336018416719639072200",
+            "derivative_power_60digits": "0.0775477296990812094973124166699954056201838106055488189425302",
+            "mean_derivative_float64_abs_difference": 2.0314305793078802e-13,
+            "derivative_power_float64_abs_difference": 8.180095489862538e-12
+          },
+          {
+            "x": 0.0,
+            "mean_derivative_60digits": "-0.199999999769936121122532703916203419928311023206185825824433",
+            "derivative_power_60digits": "0.0420140178721148706933929979210453288635105081302048326628721",
+            "mean_derivative_float64_abs_difference": 4.52138326778595e-14,
+            "derivative_power_float64_abs_difference": 7.73235642181902e-13
+          },
+          {
+            "x": 0.09375,
+            "mean_derivative_60digits": "-0.199121737286231091806093366082826894332403645272753741598742",
+            "derivative_power_60digits": "0.0487221155559628110330383573613349928986172893128322670454483",
+            "mean_derivative_float64_abs_difference": 1.1574075031717257e-14,
+            "derivative_power_float64_abs_difference": 4.298846001393741e-12
+          }
+        ],
+        "max_mean_derivative_float64_abs_difference": 2.0314305793078802e-13,
+        "max_derivative_power_float64_abs_difference": 8.180095489862538e-12
+      },
+      "learned_model_recertifies_existing_q": true,
+      "learned_model_margin_to_existing_q": 0.3051611027207541,
+      "learned_model_q_below_one": true,
+      "learned_model_tube_budget_margin": 0.023339662861188715,
+      "learned_model_minimum_radius": 0.03643231487242732,
+      "true_plant_recertifies_existing_q": true,
+      "true_plant_margin_to_existing_q": 0.26980656934293284,
+      "true_plant_q_below_one": true,
+      "true_plant_tube_budget_margin": 0.02068807285785211,
+      "true_plant_minimum_radius": 0.03869281441997348
+    }
+  ]
+}
